@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Meu Questionário</title>
 
     <style>
@@ -19,6 +19,24 @@
             text-align: center;
         }
 
+        #questionario {
+            padding: 20px;
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        button {
+            padding: 15px 25px;
+            margin: 8px;
+            font-size: 17px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
         #video {
             display: none;
             width: 100%;
@@ -27,14 +45,7 @@
         video {
             width: 100%;
             max-width: 900px;
-        }
-
-        button {
-            padding: 15px 30px;
-            margin: 8px;
-            font-size: 18px;
-            border: 0;
-            border-radius: 10px;
+            display: block;
         }
     </style>
 </head>
@@ -42,25 +53,49 @@
 <body>
 
     <div id="questionario">
-        <h1>Questionário</h1>
-        <p>Você gosta de jogos?</p>
 
-        <button onclick="mostrarVideo()">Sim</button>
-        <button onclick="mostrarVideo()">Não</button>
+        <h1>
+            Quer continuar sua experiência em português ou deseja trocar a linguagem?
+        </h1>
+
+        <button onclick="mostrarVideo()">
+            Trocar linguagem
+        </button>
+
+        <button onclick="mostrarVideo()">
+            Prefiro deixar como está
+        </button>
+
     </div>
+
 
     <div id="video">
-        <video id="meuVideo" controls>
-            <source src="vdff.mp4" type="vdff/mp4">
+
+        <video id="meuVideo" controls playsinline>
+            <source src="vdff.mp4" type="video/mp4">
+
+            Seu navegador não conseguiu carregar o vídeo.
         </video>
+
     </div>
+
 
     <script>
         function mostrarVideo() {
+
+            // Esconde o questionário
             document.getElementById("questionario").style.display = "none";
+
+            // Mostra o vídeo
             document.getElementById("video").style.display = "block";
 
-            document.getElementById("meuVideo").play();
+            // Tenta iniciar o vídeo
+            const video = document.getElementById("meuVideo");
+
+            video.play().catch(function() {
+                // Se o navegador bloquear o autoplay,
+                // o usuário pode apertar o botão de reprodução.
+            });
         }
     </script>
 
